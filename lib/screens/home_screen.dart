@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:training_calculator_riverpod/helpers/my_colors.dart';
 import 'package:training_calculator_riverpod/widgets/buttons_section.dart';
 import 'package:training_calculator_riverpod/widgets/results_section.dart';
 
@@ -10,10 +11,10 @@ class HomeScreen extends StatelessWidget {
     return SafeArea(
         child: Scaffold(
       appBar: AppBar(
-        title: const Text('Your app'),
+        title: const Text('Calculator'),
       ),
       body: Container(
-        color: Colors.black45,
+        color: myColors.background1,
         child: Column(children: const [
           Flexible(flex: 1, child: ResultsSection()),
           Flexible(flex: 2, child: ButtonsSection())

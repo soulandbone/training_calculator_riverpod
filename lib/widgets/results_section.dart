@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:training_calculator_riverpod/helpers/my_colors.dart';
 
 class ResultsSection extends StatelessWidget {
   const ResultsSection({super.key});
@@ -7,8 +8,8 @@ class ResultsSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      color: Colors.amber,
-      child: Column(children: [Text('0'), Text('0')]),
+      color: myColors.background1,
+      child: Column(children: const [Text('0'), Text('0')]),
     );
   }
 }
