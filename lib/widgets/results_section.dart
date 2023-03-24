@@ -7,9 +7,25 @@ class ResultsSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: const EdgeInsets.all(25),
       width: double.infinity,
       color: myColors.background1,
-      child: Column(children: const [Text('0'), Text('0')]),
+      child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: const [
+            Text(
+              '0',
+              style: TextStyle(color: myColors.numbers, fontSize: 46),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Text(
+              '0',
+              style: TextStyle(color: Colors.grey, fontSize: 24),
+            )
+          ]),
     );
   }
 }
