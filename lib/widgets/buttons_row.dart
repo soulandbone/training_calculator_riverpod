@@ -13,14 +13,13 @@ class ButtonsRow extends StatelessWidget {
   Widget build(BuildContext context) {
     final row = [text1, text2, text3, text4];
 
-    return Container(
+    return Expanded(
       child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: row
-              .map((e) => CustomButton(
-                    text: e,
-                  ))
-              .toList()),
+          children: row.map((text) {
+        return CustomButton(
+          text: text,
+        );
+      }).toList()),
     );
   }
 }

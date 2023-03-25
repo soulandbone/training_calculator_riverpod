@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:training_calculator_riverpod/helpers/utils.dart';
 import '../helpers/my_colors.dart';
 
 class CustomButton extends StatelessWidget {
@@ -25,37 +26,44 @@ class CustomButton extends StatelessWidget {
     }
   }
 
-  bool isOperator(String text) {
-    var operators = ['+', '-', 'x', '/', '='];
-    if (operators.contains(text)) {
-      return true;
-    }
+  // bool isOperator(String text) {
+  //   var operators = ['+', '-', 'x', '/', '='];
+  //   if (operators.contains(text)) {
+  //     return true;
+  //   }
 
-    return false;
-  }
+  //   return false;
+  // }
 
   @override
   Widget build(BuildContext context) {
-    Color buttonColor = getButtonColor();
-    return Container(
-      height: 65,
-      margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-      child: ElevatedButton(
-          onPressed: null,
+    Color buttonTextColor = getButtonColor();
+
+    return Expanded(
+      child: Container(
+        height: double.infinity,
+        margin: const EdgeInsets.all(8),
+        child: ElevatedButton(
+          onPressed: () => {},
           style: ElevatedButton.styleFrom(
-              foregroundColor: Colors.amber,
+              backgroundColor: myColors.background3,
+              elevation: 0,
               shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10))),
+                  borderRadius: BorderRadius.circular(16))),
           child: text != '<'
               ? Text(
                   text,
                   style: TextStyle(
-                      color: buttonColor, fontSize: isOperator(text) ? 12 : 26),
+                      fontWeight: FontWeight.bold,
+                      color: buttonTextColor,
+                      fontSize: Utils.isOperator(text) ? 12 : 26),
                 )
               : const Icon(
                   Icons.backspace_outlined,
                   color: myColors.delete,
-                )),
+                ),
+        ),
+      ),
     );
   }
 }

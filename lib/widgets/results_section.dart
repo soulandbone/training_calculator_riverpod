@@ -9,6 +9,7 @@ class ResultsSection extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(25),
       width: double.infinity,
+      //color: Colors.amber,
       color: myColors.background1,
       child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -16,14 +17,14 @@ class ResultsSection extends StatelessWidget {
           children: const [
             Text(
               '0',
-              style: TextStyle(color: myColors.numbers, fontSize: 46),
+              style: TextStyle(color: myColors.numbers, fontSize: 36),
             ),
             SizedBox(
               height: 10,
             ),
             Text(
               '0',
-              style: TextStyle(color: Colors.grey, fontSize: 24),
+              style: TextStyle(color: Colors.grey, fontSize: 18),
             )
           ]),
     );

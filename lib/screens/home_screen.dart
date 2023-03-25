@@ -8,18 +8,19 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-        child: Scaffold(
+    return Scaffold(
       appBar: AppBar(
         title: const Text('Calculator'),
       ),
-      body: Container(
-        color: myColors.background1,
-        child: Column(children: const [
-          Flexible(flex: 1, child: ResultsSection()),
-          Flexible(flex: 2, child: ButtonsSection())
-        ]),
+      body: SafeArea(
+        child: Container(
+          color: myColors.background1,
+          child: Column(children: const [
+            Flexible(flex: 1, child: ResultsSection()),
+            Flexible(flex: 2, child: ButtonsSection())
+          ]),
+        ),
       ),
-    ));
+    );
   }
 }

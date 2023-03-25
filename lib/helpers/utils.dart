@@ -1,6 +1,6 @@
 class Utils {
   static bool isOperator(String text) {
-    var operators = ['+', '-', '*', '/'];
+    var operators = ['+', '-', 'x', '/', '='];
     if (operators.contains(text)) {
       return true;
     }
