@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:training_calculator_riverpod/helpers/my_colors.dart';
+import '../providers/riverpod.dart';
 
-class ResultsSection extends StatelessWidget {
+class ResultsSection extends ConsumerWidget {
   const ResultsSection({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final calculator = ref.watch(calculatorProvider);
+
     return Container(
       padding: const EdgeInsets.all(25),
       width: double.infinity,
@@ -14,15 +18,15 @@ class ResultsSection extends StatelessWidget {
       child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.end,
-          children: const [
+          children: [
             Text(
-              '0',
+              calculator.equation,
               style: TextStyle(color: myColors.numbers, fontSize: 36),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
-            Text(
+            const Text(
               '0',
               style: TextStyle(color: Colors.grey, fontSize: 18),
             )

@@ -18,6 +18,7 @@ class ButtonsRow extends StatelessWidget {
           children: row.map((text) {
         return CustomButton(
           text: text,
+          onClicked: () => print(text),
         );
       }).toList()),
     );
