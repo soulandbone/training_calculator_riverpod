@@ -21,7 +21,7 @@ class ResultsSection extends ConsumerWidget {
           children: [
             Text(
               calculator.equation,
-              style: TextStyle(color: myColors.numbers, fontSize: 36),
+              style: const TextStyle(color: myColors.numbers, fontSize: 36),
             ),
             const SizedBox(
               height: 10,
