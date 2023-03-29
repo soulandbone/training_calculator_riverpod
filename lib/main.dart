@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:training_calculator_riverpod/helpers/my_colors.dart';
 import 'package:training_calculator_riverpod/screens/home_screen.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -12,10 +13,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'Flutter Demo',
+        title: 'Flutter Calculator',
         theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
+            scaffoldBackgroundColor: myColors.background1,
+            visualDensity: VisualDensity.adaptivePlatformDensity),
         home: const HomeScreen());
   }
 }

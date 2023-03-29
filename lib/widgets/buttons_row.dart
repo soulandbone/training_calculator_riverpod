@@ -17,6 +17,9 @@ class ButtonsRow extends ConsumerWidget {
       case 'AC':
         calculator.reset();
         break;
+      case '<':
+        calculator.delete();
+        break;
       case '=':
         calculator.calculate();
         break;
