@@ -1,16 +1,32 @@
 import 'package:flutter/material.dart';
-import 'package:training_calculator_riverpod/widgets/custom_button.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../widgets/custom_button.dart';
+import '../providers/riverpod.dart';
 
-class ButtonsRow extends StatelessWidget {
-  String text1;
-  String text2;
-  String text3;
-  String text4;
+class ButtonsRow extends ConsumerWidget {
+  final String text1;
+  final String text2;
+  final String text3;
+  final String text4;
 
-  ButtonsRow(this.text1, this.text2, this.text3, this.text4);
+  const ButtonsRow(this.text1, this.text2, this.text3, this.text4, {super.key});
+
+  void onClickedButton(String buttonText, WidgetRef ref) {
+    final calculator = ref.read(calculatorProvider.notifier);
+    switch (buttonText) {
+      case 'AC':
+        calculator.reset();
+        break;
+      case '=':
+        calculator.calculate();
+        break;
+      default:
+        calculator.append(buttonText);
+    }
+  }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final row = [text1, text2, text3, text4];
 
     return Expanded(
@@ -18,7 +34,7 @@ class ButtonsRow extends StatelessWidget {
           children: row.map((text) {
         return CustomButton(
           text: text,
-          onClicked: () => print(text),
+          onClicked: () => onClickedButton(text, ref),
         );
       }).toList()),
     );

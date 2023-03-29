@@ -1,4 +1,7 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:training_calculator_riverpod/helpers/utils.dart';
+import 'package:math_expressions/math_expressions.dart';
 import '../models/calculator.dart';
 
 final calculatorProvider =
@@ -6,14 +9,40 @@ final calculatorProvider =
         (ref) => CalculatorNotifier());
 
 class CalculatorNotifier extends StateNotifier<Calculator> {
-  CalculatorNotifier() : super(Calculator());
+  CalculatorNotifier() : super(const Calculator());
 
   void append(String buttonText) {
-    final equation = state.equation == '0'
-        ? buttonText
-        : state.equation +
-            buttonText; // why the callback in the example of the tutorial?
+    //print('Ends with operator is ${Utils.endsWithOperator(state.equation)}');
+    //print('button is operator is ${Utils.isOperator(buttonText)}');
+    if (Utils.endsWithOperator(state.equation) &&
+        Utils.isOperator(buttonText)) {
+      var length = (state.equation).length;
 
-    state = state.copiar(equation: equation);
+      final newEquation =
+          (state.equation).substring(0, length - 1) + buttonText;
+      state = state.copy(equation: newEquation);
+    } else {
+      final equation = state.equation == '0'
+          ? buttonText
+          : state.equation +
+              buttonText; // why the callback in the example of the tutorial?
+
+      state = state.copy(equation: equation);
+    }
+  }
+
+  void reset() {
+    state = state.copy(result: '0', equation: '0');
+  }
+
+  void calculate() {
+    Parser p = Parser();
+    Expression exp = p.parse((state.equation));
+
+    ContextModel cm = ContextModel();
+
+    var result = exp.evaluate(EvaluationType.REAL, cm);
+
+    state = state.copy(result: result.toString());
   }
 }

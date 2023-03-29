@@ -3,10 +3,10 @@ class Calculator {
   final String equation;
   final String result;
 
-  Calculator(
+  const Calculator(
       {this.shouldAppend = true, this.equation = '0', this.result = '0'});
 
-  Calculator copiar({
+  Calculator copy({
     bool? shouldAppend,
     String? equation,
     String? result,

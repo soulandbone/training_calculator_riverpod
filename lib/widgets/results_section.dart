@@ -26,9 +26,9 @@ class ResultsSection extends ConsumerWidget {
             const SizedBox(
               height: 10,
             ),
-            const Text(
-              '0',
-              style: TextStyle(color: Colors.grey, fontSize: 18),
+            Text(
+              calculator.result,
+              style: const TextStyle(color: Colors.grey, fontSize: 18),
             )
           ]),
     );

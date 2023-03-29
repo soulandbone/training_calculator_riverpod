@@ -15,8 +15,8 @@ class ButtonsSection extends StatelessWidget {
                 topLeft: Radius.circular(25), topRight: Radius.circular(25))),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            ButtonsRow('AC', '<', '', '/'),
+          children: const [
+            ButtonsRow('AC', '<', '', '÷'),
             ButtonsRow('7', '8', '9', 'x'),
             ButtonsRow('4', '5', '6', '-'),
             ButtonsRow('1', '2', '3', '+'),

@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:training_calculator_riverpod/helpers/utils.dart';
-import 'package:training_calculator_riverpod/providers/riverpod.dart';
 import '../helpers/my_colors.dart';
 
 class CustomButton extends ConsumerWidget {
-  String text;
-  VoidCallback onClicked;
+  final String text;
+  final VoidCallback onClicked;
 
   CustomButton({required this.text, required this.onClicked});
 
@@ -15,7 +14,7 @@ class CustomButton extends ConsumerWidget {
       case '+':
       case '-':
       case 'x':
-      case '/':
+      case '÷':
       case '=':
         return myColors.operators;
       case 'AC':
@@ -39,18 +38,13 @@ class CustomButton extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     Color buttonTextColor = getButtonColor();
-    final calculator = ref.read(calculatorProvider.notifier);
-
-    void onClickedButton(String buttonText) {
-      calculator.append(buttonText);
-    }
 
     return Expanded(
       child: Container(
         height: double.infinity,
         margin: const EdgeInsets.all(8),
         child: ElevatedButton(
-          onPressed: () => onClickedButton(text),
+          onPressed: onClicked,
           style: ElevatedButton.styleFrom(
               backgroundColor: myColors.background3,
               elevation: 0,
@@ -62,7 +56,7 @@ class CustomButton extends ConsumerWidget {
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
                       color: buttonTextColor,
-                      fontSize: Utils.isOperator(text) ? 12 : 26),
+                      fontSize: Utils.isOperator(text) ? 20 : 26),
                 )
               : const Icon(
                   Icons.backspace_outlined,
