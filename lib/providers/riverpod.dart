@@ -11,27 +11,41 @@ class CalculatorNotifier extends StateNotifier<Calculator> {
   CalculatorNotifier() : super(const Calculator());
 
   void append(String buttonText) {
-    //print('Ends with operator is ${Utils.endsWithOperator(state.equation)}');
-    //print('button is operator is ${Utils.isOperator(buttonText)}');
-    if (Utils.endsWithOperator(state.equation) &&
-        Utils.isOperator(buttonText)) {
-      var length = (state.equation).length;
+    if (!state.shouldAppend) {
+      final equation = buttonText;
+      print('button text is $buttonText');
 
-      final newEquation =
-          (state.equation).substring(0, length - 1) + buttonText;
-      state = state.copy(equation: newEquation);
+      state = state.copy(equation: equation, shouldAppend: true);
     } else {
-      final equation = state.equation == '0'
-          ? buttonText
-          : state.equation +
-              buttonText; // why the callback in the example of the tutorial?
+      if (Utils.endsWithOperator(state.equation) &&
+          Utils.isOperator(buttonText)) {
+        var length = (state.equation).length;
 
-      state = state.copy(equation: equation);
+        final newEquation =
+            (state.equation).substring(0, length - 1) + buttonText;
+        state = state.copy(equation: newEquation);
+      } else {
+        final newEquation = state.equation + buttonText;
+        state = state.copy(equation: newEquation);
+      }
+    }
+
+    if (state.isResult) {
+      if (Utils.isOperator(buttonText)) {
+        print('Got into the if');
+        final newEquation = state.result + buttonText;
+        state = state.copy(equation: newEquation, isResult: false);
+      } else {
+        print('Got into the else');
+        final newEquation = buttonText;
+        state = state.copy(
+            equation: newEquation, result: newEquation, isResult: false);
+      }
     }
   }
 
   void reset() {
-    state = state.copy(result: '0', equation: '0');
+    state = state.copy(result: '0', equation: '0', shouldAppend: false);
   }
 
   void delete() {
@@ -54,7 +68,7 @@ class CalculatorNotifier extends StateNotifier<Calculator> {
 
       var result = exp.evaluate(EvaluationType.REAL, cm);
 
-      state = state.copy(result: result.toString());
+      state = state.copy(result: result.toString(), isResult: true);
     } catch (e) {
       print(e);
     }
