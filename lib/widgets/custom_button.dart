@@ -7,7 +7,7 @@ class CustomButton extends ConsumerWidget {
   final String text;
   final VoidCallback onClicked;
 
-  CustomButton({required this.text, required this.onClicked});
+  const CustomButton({super.key, required this.text, required this.onClicked});
 
   Color getButtonColor() {
     switch (text) {

@@ -13,9 +13,9 @@ class ButtonsSection extends StatelessWidget {
             color: myColors.background2,
             borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(25), topRight: Radius.circular(25))),
-        child: Column(
+        child: const Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: const [
+          children: [
             ButtonsRow('AC', '<', '', '÷'),
             ButtonsRow('7', '8', '9', 'x'),
             ButtonsRow('4', '5', '6', '-'),

@@ -16,7 +16,7 @@ class HomeScreen extends StatelessWidget {
       body: SafeArea(
         child: Container(
           color: myColors.background1,
-          child: Column(children: const [
+          child: const Column(children: [
             Flexible(flex: 1, child: ResultsSection()),
             Flexible(flex: 2, child: ButtonsSection())
           ]),

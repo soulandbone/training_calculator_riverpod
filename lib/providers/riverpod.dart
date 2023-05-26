@@ -72,6 +72,5 @@ class CalculatorNotifier extends StateNotifier<Calculator> {
     } catch (e) {
       print(e);
     }
-    ;
   }
 }
